@@ -61,139 +61,162 @@ public class Lab2_MiguelRojas {
                                 System.out.println("Seleccione un tipo de personaje valido");
                                 flag = false;
                         }
+                    }
 
-                        System.out.print("Ingrese nombre: ");
-                        String nombre = sc.nextLine();
-                        nombre = sc.nextLine();
-                        //Selección de raza
-                        String raza = "";
-                        boolean flag_r = false;
-                        while (flag_r == false) {
-                            System.out.println("Seleccione Raza");
-                            System.out.println("[1] Mediano");
-                            System.out.println("[2] Enano");
-                            System.out.println("[3] Elfo");
-                            System.out.println("[4] Humano");
-                            System.out.println("Seleccione opcion");
-                            int op_raza = sc.nextInt();
-                            switch (op_raza) {
-                                case 1:
-                                    raza = "Mediano";
-                                    flag_r = true;
-                                    break;
-                                case 2:
-                                    raza = "Enano";
-                                    flag_r = true;
-                                    break;
-                                case 3:
-                                    raza = "Elfo";
-                                    flag_r = true;
-                                    break;
-                                case 4:
-                                    raza = "Humano";
-                                    flag_r = true;
-                                    break;
-                                default:
-                                    System.out.println("Ingrese una opcion valida");
-                                    flag_r = false;
-                            }
+                    System.out.print("Ingrese nombre: ");
+                    String nombre = sc.nextLine();
+                    nombre = sc.nextLine();
+                    //Selección de raza
+                    String raza = "";
+                    boolean flag_r = false;
+                    while (flag_r == false) {
+                        System.out.println("Seleccione Raza");
+                        System.out.println("[1] Mediano");
+                        System.out.println("[2] Enano");
+                        System.out.println("[3] Elfo");
+                        System.out.println("[4] Humano");
+                        System.out.println("Seleccione opcion");
+                        int op_raza = sc.nextInt();
+                        switch (op_raza) {
+                            case 1:
+                                raza = "Mediano";
+                                flag_r = true;
+                                break;
+                            case 2:
+                                raza = "Enano";
+                                flag_r = true;
+                                break;
+                            case 3:
+                                raza = "Elfo";
+                                flag_r = true;
+                                break;
+                            case 4:
+                                raza = "Humano";
+                                flag_r = true;
+                                break;
+                            default:
+                                System.out.println("Ingrese una opcion valida");
+                                flag_r = false;
                         }
-                        //Selección de estatura
-                        System.out.print("Ingrese estatura: ");
-                        Double estatura = sc.nextDouble();
-                        //Seleccion de peso
-                        System.out.print("Ingrese peso: ");
-                        int peso = sc.nextInt();
-                        //Selección de años
-                        System.out.print("Ingrese años: ");
-                        int años = sc.nextInt();
-                        //Escribir Descripción
-                        System.out.print("Escriba una descripcion del personaje: ");
-                        String descrip = sc.nextLine();
-                        descrip = sc.nextLine();
-                        //Escribir Nacionalidad
-                        String nacionalidad = "";
-                        boolean flag_n = false;
-                        while (flag_n == false) {
-                            System.out.println("Seleccione una Nacionalidad");
-                            System.out.println("[1] Norfair");
-                            System.out.println("[2] Brinstar");
-                            System.out.println("[3] Maridia");
-                            System.out.println("[4] Zebes");
-                            System.out.println("[5] Crateria");
-                            System.out.println("Seleccione una opcion");
-                            int opcion_nac = sc.nextInt();
-                            switch (opcion_nac) {
-                                case 1:
-                                    nacionalidad = "Norfair";
-                                    flag_n =true;
-                                    break;
-                                case 2:
-                                    nacionalidad = "Brinstar";
-                                    flag_n =true;
-                                    break;
-                                case 3:
-                                    nacionalidad = "Maridia";
-                                    flag_n =true;
-                                    break;
-                                case 4:
-                                    nacionalidad = "Zebes";
-                                    flag_n =true;
-                                    break;
-                                case 5:
-                                    nacionalidad = "Crateria";
-                                    flag_n = true;
-                                    break;
-                                default:
-                                    System.out.println("Ingrese una opción valida");
-                                    flag_n = false;
-                            }
-                        }
-
-                        //Atributos aparte
-                        //Hit points
-                        int hp  = 0;
-                        if (raza == "Mediano") {
-                            hp = 50 + r.nextInt(60);
-                        } else if (raza == "Enano") {
-                            hp = 80 + r.nextInt(100);
-                        } else if (raza == "Elfo") {
-                            hp = 50 + r.nextInt(70);
-                        } else if (raza == "Humano") {
-                            hp = 40 + r.nextInt(75);
-                        } else {
-                            //do nothin
-                        }
-
-                        //Armor Class
-                        int ac = 0;
-                        if (tipo_personaje == "Clerigo") {
-                            ac = 40;
-                        } else if (tipo_personaje == "Barbaro") {
-                            ac = 65;
-                        } else if (tipo_personaje == "Mago") {
-                            ac = 20;
-                        } else if (tipo_personaje == "Picaro") {
-                            ac = 50;
-                        } else {
-                            //do nothing
-                        }
-
-                        Personajes per = new Personajes(tipo_personaje, nombre, raza, estatura, peso, años, descrip, nacionalidad, hp, ac);
-                        
-                        lista.add(per);
-                        
-                        for (Object o : lista) {
-                            System.out.println(o);
+                    }
+                    //Selección de estatura
+                    System.out.print("Ingrese estatura: ");
+                    Double estatura = sc.nextDouble();
+                    //Seleccion de peso
+                    System.out.print("Ingrese peso: ");
+                    int peso = sc.nextInt();
+                    //Selección de años
+                    System.out.print("Ingrese años: ");
+                    int años = sc.nextInt();
+                    //Escribir Descripción
+                    System.out.print("Escriba una descripcion del personaje: ");
+                    String descrip = sc.nextLine();
+                    descrip = sc.nextLine();
+                    //Escribir Nacionalidad
+                    String nacionalidad = "";
+                    boolean flag_n = false;
+                    while (flag_n == false) {
+                        System.out.println("Seleccione una Nacionalidad");
+                        System.out.println("[1] Norfair");
+                        System.out.println("[2] Brinstar");
+                        System.out.println("[3] Maridia");
+                        System.out.println("[4] Zebes");
+                        System.out.println("[5] Crateria");
+                        System.out.println("Seleccione una opcion");
+                        int opcion_nac = sc.nextInt();
+                        switch (opcion_nac) {
+                            case 1:
+                                nacionalidad = "Norfair";
+                                flag_n = true;
+                                break;
+                            case 2:
+                                nacionalidad = "Brinstar";
+                                flag_n = true;
+                                break;
+                            case 3:
+                                nacionalidad = "Maridia";
+                                flag_n = true;
+                                break;
+                            case 4:
+                                nacionalidad = "Zebes";
+                                flag_n = true;
+                                break;
+                            case 5:
+                                nacionalidad = "Crateria";
+                                flag_n = true;
+                                break;
+                            default:
+                                System.out.println("Ingrese una opción valida");
+                                flag_n = false;
                         }
                     }
 
+                    //Atributos aparte
+                    //Hit points
+                    int hp = 0;
+                    if (raza == "Mediano") {
+                        hp = 50 + r.nextInt(60);
+                    } else if (raza == "Enano") {
+                        hp = 80 + r.nextInt(100);
+                    } else if (raza == "Elfo") {
+                        hp = 50 + r.nextInt(70);
+                    } else if (raza == "Humano") {
+                        hp = 40 + r.nextInt(75);
+                    } else {
+                        //do nothin
+                    }
+
+                    //Armor Class
+                    int ac = 0;
+                    if (tipo_personaje == "Clerigo") {
+                        ac = 40;
+                    } else if (tipo_personaje == "Barbaro") {
+                        ac = 65;
+                    } else if (tipo_personaje == "Mago") {
+                        ac = 20;
+                    } else if (tipo_personaje == "Picaro") {
+                        ac = 50;
+                    } else {
+                        //do nothing
+                    }
+
+                    Personajes per = new Personajes(tipo_personaje, nombre, raza, estatura, peso, años, descrip, nacionalidad, hp, ac);
+                    lista.add(per);
+                    
+                    for (int i = 0; i < lista.size(); i++) {
+                        System.out.println(lista.get(i));
+                        System.out.println("Posicion = " + i);
+                    }
+                    System.out.println();
+                    System.out.println("Se Agrego con exito Su personaje\n");
+                    //Personaje Inicializado
+                    //Miguel The Wise
+                    tipo_personaje = "Mago";
+                    nombre = "Miguel The Wise";
+                    raza = "Humano";
+                    estatura = 1.80;
+                    peso = 70;
+                    años = 18;
+                    descrip = "Un Mago mas poderoso que Harry Potter";
+                    nacionalidad = "Norfair";
+                    hp = 75;
+                    ac = 20;
+                    Personajes per1 = new Personajes(tipo_personaje, nombre, raza, estatura, peso, años, descrip, nacionalidad, hp, ac);
+                    lista.add(per1);
                     break;
                 case 'b':
                 case 'B':
+                    
                     break;
                 case 'c':
                 case 'C':
+                    System.out.println("Ver Atributos de Personaje");
+                    
+                    for (int i = 0; i < lista.size(); i++) {
+                        System.out.println(lista.get(i));
+                        System.out.println("Posicion = " + i);
+                    }
+                    System.out.println();
                     break;
                 case 'd':
                 case 'D':
