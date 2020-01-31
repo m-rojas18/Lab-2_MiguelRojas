@@ -13,7 +13,15 @@ public class Lab2_MiguelRojas {
         ArrayList lista = new ArrayList();
 
         String tipo_personaje = "";
-
+        //Instancia de personajes
+        Personajes per0 = new Personajes("Mago", "Miguel The Wise", "Humano", 1.80, 70, 18, "El mago mas poderoso", "Norfair",75,20);
+        lista.add(per0);
+        Personajes per1 = new Personajes("Barbaro","Daenerys The Mad","Mediano",1.70, 65, 30 , "La reina loca","Brinstar",50,65);
+        lista.add(per1);
+        Personajes per2 = new Personajes("Clerigo", "Robb Stark", "Humano" , 1.75, 65, 23 , "The King of the North", "Zebes", 70, 40);
+        lista.add(per2);
+        Personajes per3 = new Personajes("Picaro", "Link of Hyrule", "Elfo", 1.90, 50, 40, "El mejor arquero" , "Crateria" , 55, 50);
+        lista.add(per3);
         char resp = 's';
         while (resp == 's') {
             System.out.println("Codest");
@@ -179,33 +187,18 @@ public class Lab2_MiguelRojas {
                     } else {
                         //do nothing
                     }
+                    int n = 4;
 
                     Personajes per = new Personajes(tipo_personaje, nombre, raza, estatura, peso, años, descrip, nacionalidad, hp, ac);
                     lista.add(per);
                     
-                    for (int i = 0; i < lista.size(); i++) {
-                        System.out.println(lista.get(i));
-                        System.out.println("Posicion = " + i);
-                    }
-                    System.out.println();
+                    System.out.println(lista.get(4));
+                    n++;
                     System.out.println("Se Agrego con exito Su personaje\n");
-                    //Personaje Inicializado
-                    //Miguel The Wise
-                    tipo_personaje = "Mago";
-                    nombre = "Miguel The Wise";
-                    raza = "Humano";
-                    estatura = 1.80;
-                    peso = 70;
-                    años = 18;
-                    descrip = "Un Mago mas poderoso que Harry Potter";
-                    nacionalidad = "Norfair";
-                    hp = 75;
-                    ac = 20;
-                    Personajes per1 = new Personajes(tipo_personaje, nombre, raza, estatura, peso, años, descrip, nacionalidad, hp, ac);
-                    lista.add(per1);
                     break;
                 case 'b':
                 case 'B':
+                    System.out.println("Modificación de Personaje");
                     
                     break;
                 case 'c':
@@ -220,6 +213,11 @@ public class Lab2_MiguelRojas {
                     break;
                 case 'd':
                 case 'D':
+                    System.out.println("Eliminar Personaje");
+                    System.out.print("Ingrese posicion del personaje: ");
+                    int pos = sc.nextInt();
+                    lista.remove(pos);
+                    System.out.println("Se ha eliminado el personaje exitosamente");
                     break;
                 case 'e':
                 case 'E':
