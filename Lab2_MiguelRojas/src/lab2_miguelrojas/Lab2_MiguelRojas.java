@@ -14,13 +14,13 @@ public class Lab2_MiguelRojas {
 
         String tipo_personaje = "";
         //Instancia de personajes
-        Personajes per0 = new Personajes("Mago", "Miguel The Wise", "Humano", 1.80, 70, 18, "El mago mas poderoso", "Norfair",75,20);
+        Personajes per0 = new Personajes("Mago", "Miguel The Wise", "Humano", 1.80, 70, 18, "El mago mas poderoso", "Norfair", 75, 20);
         lista.add(per0);
-        Personajes per1 = new Personajes("Barbaro","Daenerys The Mad","Mediano",1.70, 65, 30 , "La reina loca","Brinstar",50,65);
+        Personajes per1 = new Personajes("Barbaro", "Daenerys The Mad", "Mediano", 1.70, 65, 30, "La reina loca", "Brinstar", 50, 65);
         lista.add(per1);
-        Personajes per2 = new Personajes("Clerigo", "Robb Stark", "Humano" , 1.75, 65, 23 , "The King of the North", "Zebes", 70, 40);
+        Personajes per2 = new Personajes("Clerigo", "Robb Stark", "Humano", 1.75, 65, 23, "The King of the North", "Zebes", 70, 40);
         lista.add(per2);
-        Personajes per3 = new Personajes("Picaro", "Link of Hyrule", "Elfo", 1.90, 50, 40, "El mejor arquero" , "Crateria" , 55, 50);
+        Personajes per3 = new Personajes("Picaro", "Link of Hyrule", "Elfo", 1.90, 50, 40, "El mejor arquero", "Crateria", 55, 50);
         lista.add(per3);
         char resp = 's';
         while (resp == 's') {
@@ -163,13 +163,13 @@ public class Lab2_MiguelRojas {
                     //Hit points
                     int hp = 0;
                     if (raza == "Mediano") {
-                        hp = 50 + r.nextInt(60);
+                        hp = 50 + r.nextInt(60 - 50);
                     } else if (raza == "Enano") {
-                        hp = 80 + r.nextInt(100);
+                        hp = 80 + r.nextInt(100 - 80);
                     } else if (raza == "Elfo") {
-                        hp = 50 + r.nextInt(70);
+                        hp = 50 + r.nextInt(70 - 50);
                     } else if (raza == "Humano") {
-                        hp = 40 + r.nextInt(75);
+                        hp = 40 + r.nextInt(75 - 40);
                     } else {
                         //do nothin
                     }
@@ -191,7 +191,7 @@ public class Lab2_MiguelRojas {
 
                     Personajes per = new Personajes(tipo_personaje, nombre, raza, estatura, peso, años, descrip, nacionalidad, hp, ac);
                     lista.add(per);
-                    
+
                     System.out.println(lista.get(4));
                     n++;
                     System.out.println("Se Agrego con exito Su personaje\n");
@@ -199,12 +199,12 @@ public class Lab2_MiguelRojas {
                 case 'b':
                 case 'B':
                     System.out.println("Modificación de Personaje");
-                    
+
                     break;
                 case 'c':
                 case 'C':
                     System.out.println("Ver Atributos de Personaje");
-                    
+
                     for (int i = 0; i < lista.size(); i++) {
                         System.out.println(lista.get(i));
                         System.out.println("Posicion = " + i);
@@ -221,6 +221,9 @@ public class Lab2_MiguelRojas {
                     break;
                 case 'e':
                 case 'E':
+                    System.out.println("Simulación de Combate\n");
+                    Combate(lista);
+                    System.out.println();
                     break;
                 case 'f':
                 case 'F':
@@ -230,7 +233,197 @@ public class Lab2_MiguelRojas {
                     System.out.println("Ingrese una opcion valida");
             }
         }
-
     }
 
+    public static void Combate(ArrayList lista) {
+
+        Random r2 = new Random();
+        Scanner sc = new Scanner(System.in);
+
+        int damage = 0;
+        int damage2 = 0;
+        int turno = 1;
+        boolean end = false;
+        //Players
+        System.out.println("Lista de Personajes");
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("[" + i + "]" + ((Personajes) lista.get(i)).getNombre());
+        }
+        System.out.println();
+        System.out.println("Ingrese opcion: ");
+        int player = sc.nextInt();
+        int player2 = 0 + r2.nextInt(4);
+
+        while (player2 == player) {
+            player2 = 0 + r2.nextInt(4);
+        }
+        while (end == false) {
+            if (turno % 2 != 0) {
+                System.out.println("Turno de Jugador");
+                System.out.println("[1] Atacar");
+                System.out.println("[2] Defender");
+                System.out.print("Ingrese que hacer: ");
+                int decision = sc.nextInt();
+                switch (decision) {
+                    case 1:
+                        int attack_player1 = r2.nextInt(99) + 1;
+                        int crit_player1 = 0;
+                        int crit_player2 = 0;
+
+                        //Crit a superar
+                        if (((Personajes) lista.get(player2)).getTipo_personaje() == "Clerigo") {
+                            crit_player2 = 97;
+                        } else if (((Personajes) lista.get(player2)).getTipo_personaje() == "Barbaro") {
+                            crit_player2 = 93;
+                        } else if (((Personajes) lista.get(player2)).getTipo_personaje() == "Mago") {
+                            crit_player2 = 101;
+                        } else if (((Personajes) lista.get(player2)).getTipo_personaje() == "Picaro") {
+                            crit_player2 = 80;
+                        }
+
+                        //Damage
+                        if (player == 0) {
+                            //Random del mago
+                            damage = r2.nextInt(10 - 5) + 5;
+                        } else if (player == 1) {
+                            //Random del barbaro
+                            damage = r2.nextInt(30 - 15) + 15;
+                        } else if (player == 2) {
+                            //Random de clerigo
+                            damage = r2.nextInt(15 - 5) + 5;
+                        } else if (player == 3) {
+                            //Random del Picaro
+                            damage = r2.nextInt(25 - 15) + 15;
+                        } else {
+                            //Else si el personaje no es de los predeterminados
+                            if (((Personajes) lista.get(player)).getTipo_personaje() == "Clerigo") {
+                                damage = r2.nextInt(15 - 5) + 5;
+                            } else if (((Personajes) lista.get(player)).getTipo_personaje() == "Barbaro") {
+                                damage = r2.nextInt(30 - 15) + 15;
+                            } else if (((Personajes) lista.get(player)).getTipo_personaje() == "Mago") {
+                                damage = r2.nextInt(10 - 5) + 5;
+                            } else if (((Personajes) lista.get(player)).getTipo_personaje() == "Picaro") {
+                                damage = r2.nextInt(25 - 15) + 15;
+                            }
+                        }
+
+                        //Ataque
+                        ((Personajes) lista.get(player)).getAC();
+                        if (attack_player1 > ((Personajes) lista.get(player2)).getAC()) {
+                            //Validar si el ataque es mayor que el crit
+                            if (attack_player1 > crit_player2) {
+                                crit_player1 = damage * 2;
+                                ((Personajes) lista.get(player2)).setHP(((Personajes) lista.get(player)).getHP() - crit_player1);
+                                System.out.println(((Personajes) lista.get(player)).getNombre() + "Pego un critico de " + crit_player1 + "\na "+((Personajes) lista.get(player2)).getNombre());
+                            } else {
+                                //Atacar con damage normal
+                                ((Personajes) lista.get(player2)).setHP(((Personajes) lista.get(player)).getHP() - damage);
+                                System.out.println(((Personajes) lista.get(player)).getNombre() + " le pego a " + ((Personajes) lista.get(player2)).getNombre() + " por " + damage);
+                            }
+
+                            //Verificar si termino el juego
+                            if (((Personajes) lista.get(player2)).getHP() <= 0) {
+                                System.out.print("El personaje " + ((Personajes) lista.get(player2)).getNombre() + "ha muerto ");
+                                System.out.println("A perdido la computadora");
+                                end = true;
+                            }
+                        } else {
+                            System.out.println("El ataque de " + ((Personajes) lista.get(player)).getNombre() + "Fue muy debil");
+                        }
+                        break;
+                    case 2:
+                        ((Personajes) lista.get(player)).setAC(((Personajes) lista.get(player)).getAC() + 15);
+                        System.out.println("Su Armadura a incrementado por 15 puntos");
+                        System.out.println("Armadura = " + ((Personajes) lista.get(player2)).getAC());
+                        break;
+                    default:
+                        System.out.println("Perdio un turno");
+                }
+                System.out.println();
+                turno++;
+            } else {
+                //Turno de CPU
+                System.out.println("Turno de " + ((Personajes) lista.get(player2)).getNombre());
+                int decision = r2.nextInt(1) + 1;
+                switch (decision) {
+                    case 1:
+                        int attack_player2 = r2.nextInt(99) + 1;
+                        int crit_player1 = 0;
+                        int crit_player2 = 0;
+
+                        //Crit a superar
+                        if (((Personajes) lista.get(player)).getTipo_personaje() == "Clerigo") {
+                            crit_player1 = 97;
+                        } else if (((Personajes) lista.get(player)).getTipo_personaje() == "Barbaro") {
+                            crit_player1 = 93;
+                        } else if (((Personajes) lista.get(player)).getTipo_personaje() == "Mago") {
+                            crit_player1 = 101;
+                        } else if (((Personajes) lista.get(player)).getTipo_personaje() == "Picaro") {
+                            crit_player1 = 80;
+                        }
+
+                        //Damage
+                        if (player2 == 0) {
+                            //Random del mago
+                            damage2 = r2.nextInt(10 - 5) + 5;
+                        } else if (player2 == 1) {
+                            //Random del barbaro
+                            damage2 = r2.nextInt(30 - 15) + 15;
+                        } else if (player2 == 2) {
+                            //Random de clerigo
+                            damage2 = r2.nextInt(15 - 5) + 5;
+                        } else if (player2 == 3) {
+                            //Random del Picaro
+                            damage2 = r2.nextInt(25 - 15) + 15;
+                        } else {
+                            //Else si el personaje no es de los predeterminados
+                            if (((Personajes) lista.get(player2)).getTipo_personaje() == "Clerigo") {
+                                damage = r2.nextInt(15 - 5) + 5;
+                            } else if (((Personajes) lista.get(player2)).getTipo_personaje() == "Barbaro") {
+                                damage = r2.nextInt(30 - 15) + 15;
+                            } else if (((Personajes) lista.get(player2)).getTipo_personaje() == "Mago") {
+                                damage = r2.nextInt(10 - 5) + 5;
+                            } else if (((Personajes) lista.get(player2)).getTipo_personaje() == "Picaro") {
+                                damage = r2.nextInt(25 - 15) + 15;
+                            }
+                        }
+
+                        //Ataque
+                        ((Personajes) lista.get(player)).getAC();
+                        if (attack_player2 > ((Personajes) lista.get(player)).getAC()) {
+                            //Validar si el ataque es mayor que el crit
+                            if (attack_player2 > crit_player1) {
+                                crit_player2 = damage2 * 2;
+                                ((Personajes) lista.get(player)).setHP(((Personajes) lista.get(player)).getHP() - crit_player2);
+                                System.out.println(((Personajes) lista.get(player)).getNombre() + " Pego un critico de " + crit_player1 + "\na "+((Personajes) lista.get(player2)).getNombre());
+                            } else {
+                                //Atacar con damage normal
+                                ((Personajes) lista.get(player)).setHP(((Personajes) lista.get(player)).getHP() - damage2);
+                                System.out.println(((Personajes) lista.get(player2)).getNombre() + " le pego a " + ((Personajes) lista.get(player)).getNombre() + " por " + damage2);
+                            }
+                            //Verificar si la vida del primer jugador es <=0
+                            //Asi termina la simulacion
+                            if (((Personajes) lista.get(player)).getHP() <= 0) {
+                                System.out.print(((Personajes) lista.get(player)).getNombre() + " ha muerto .");
+                                System.out.println("A perdido el judgador 1 ");
+                                end = true;
+                            }
+                        } else{
+                            System.out.println("El ataque de " + ((Personajes) lista.get(player2)).getNombre() + " Fue muy debil");
+                        }
+                        break;
+                    case 2:
+                        ((Personajes) lista.get(player2)).setAC(((Personajes) lista.get(player2)).getAC() + 15);
+                        System.out.println("Su Armadura a incrementado por 15 puntos");
+                        System.out.println("Armadura = " + ((Personajes) lista.get(player2)).getAC());
+                        break;
+                    default:
+                        System.out.println("Fallo la CPU");
+                }
+                System.out.println();
+                turno ++;
+            }
+        }
+
+    }
 }
